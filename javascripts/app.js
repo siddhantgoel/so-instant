@@ -25,10 +25,13 @@ $(document).ready(function() {
     })();
     
     var update_results = function(data) {
+        $("#results_tbody").empty();
         if (data.items.length > 0) {
             for (var i = 0; i < data.items.length; i++) {
                 $("#results_table > tbody:last").append([
-                    '<tr><td><a href="http://stackoverflow.com/q/',
+                    '<tr>',
+                    data.items[i].is_answered ? '<td><i class="icon-ok"></i></td>' : '<td></td>',
+                    '<td><a href="http://stackoverflow.com/q/',
                     String(data.items[i].question_id),
                     '">',
                     data.items[i].title,
@@ -40,24 +43,20 @@ $(document).ready(function() {
     
     var fetch = function() {
         var query = get_query();
-        if (query.length > 0) {
-            var data = $.jStorage.get(query);
-            if (data) {
-                update_results(data);
-            } else {
-                $.getJSON(endpoint, {
-                    order: 'desc',
-                    sort: 'relevance',
-                    accepted: 'True',
-                    q: query,
-                    body: query
-                }).done(function(data) {
-                    update_results(data);
-                    $.jStorage.set(query, data, { TTL: 25000 });
-                });
-            }
+        var data = $.jStorage.get(query);
+        if (data) {
+            update_results(data);
         } else {
-            $("#results_tbody").empty();
+            $.getJSON(endpoint, {
+                order: 'desc',
+                sort: 'relevance',
+                accepted: 'True',
+                q: query,
+                body: query
+            }).done(function(data) {
+                update_results(data);
+                $.jStorage.set(query, data, { TTL: 25000 });
+            });
         }
     };
     
