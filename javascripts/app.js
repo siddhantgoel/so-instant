@@ -30,14 +30,15 @@ $(document).ready(function() {
             for (var i = 0; i < data.items.length; i++) {
                 $("#results_table > tbody:last").append([
                     '<tr>',
-                    data.items[i].is_answered ? '<td><i class="icon-ok"></i></td>' : '<td></td>',
-                    '<td><a href="http://stackoverflow.com/q/',
-                    String(data.items[i].question_id),
-                    '">',
-                    data.items[i].title,
-                    '</a></td></tr>'
+                    data.items[i].is_answered ? '<td><i class="icon-ok answered"></i></td>' : '<td></td>',
+                    '<td><a href="' + data.items[i].link + '">' + data.items[i].title + '</a></td>',
+                    '<td>' + String(data.items[i].score) + ' votes</td>',
+                    '<td>' + String(data.items[i].view_count) + ' views</td>',
+                    '<td>' + String(data.items[i].answer_count) + ' answers</td>',
+                    '</tr>'
                 ].join(""));
             }
+            $(".answered").tooltip({ title: 'Answered', placement: 'bottom' });
         }
     };
     
