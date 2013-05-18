@@ -24,28 +24,39 @@ $(document).ready(function() {
         };
     })();
     
+    var update_results = function(data) {
+        if (data.items.length > 0) {
+            $("#results_tbody").empty();
+            for (var i = 0; i < data.items.length; i++) {
+                $("#results_table > tbody:last").append([
+                    '<tr><td><a href="http://stackoverflow.com/q/',
+                    String(data.items[i].question_id),
+                    '">',
+                    data.items[i].title,
+                    '</a></td></tr>'
+                ].join(""));
+            }
+        }
+    };
+    
     var fetch = function() {
-        if (get_query().length > 0) {
-            $.getJSON(endpoint, {
-                order: 'desc',
-                sort: 'relevance',
-                accepted: 'True',
-                q: get_query(),
-                body: get_query()
-            }).done(function(data) {
-                if (data.items.length > 0) {
-                    $("#results_tbody").empty();
-                    for (var i = 0; i < data.items.length; i++) {
-                        $("#results_table > tbody:last").append([
-                            '<tr><td><a href="http://stackoverflow.com/q/',
-                            String(data.items[i].question_id),
-                            '">',
-                            data.items[i].title,
-                            '</a></td></tr>'
-                        ].join(""));
-                    }
-                }
-            });
+        var query = get_query();
+        if (query.length > 0) {
+            var data = $.jStorage.get(query);
+            if (data) {
+                update_results(data);
+            } else {
+                $.getJSON(endpoint, {
+                    order: 'desc',
+                    sort: 'relevance',
+                    accepted: 'True',
+                    q: query,
+                    body: query
+                }).done(function(data) {
+                    update_results(data);
+                    $.jStorage.set(query, data, { TTL: 25000 });
+                });
+            }
         } else {
             $("#results_tbody").empty();
         }
