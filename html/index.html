@@ -5,6 +5,7 @@
 <head>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/stylesheets/flat-ui.min.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/stylesheets/app.css" type="text/css" media="screen">
     <script src="/javascripts/jquery-1.9.1.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
@@ -15,19 +16,23 @@
 </head>
 <body>
     <div class="container">
-        <div class="span12" id="div_logo">
-            <p class="text-center">
+        <div class="jumbotron">
+            <h1 class="text-center">
                 StackOverflow Instant
-            </p>
+            </h1>
         </div>
         
-        <div class="span12" id="div_query">
+        <div class="span12">
             <p class="text-center">
                 <input type="text" name="query" id="query" class="input-xxlarge"/>
             </p>
         </div>
         
-        <div class="span12" id="div_results">
+        <div class="span12">
+            <table class="table" id="results">
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
