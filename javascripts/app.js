@@ -26,7 +26,6 @@ $(document).ready(function() {
     
     var update_results = function(data) {
         if (data.items.length > 0) {
-            $("#results_tbody").empty();
             for (var i = 0; i < data.items.length; i++) {
                 $("#results_table > tbody:last").append([
                     '<tr><td><a href="http://stackoverflow.com/q/',
@@ -63,9 +62,13 @@ $(document).ready(function() {
     };
     
     $("#query").on("keyup", function(e) {
-        if (typeof(e.which) == "number" && e.which > 0 && !(e.ctrlKey || e.metaKey || e.altKey)) {
-            if (get_query().length > 0) {
-                delay(fetch, 250);
+        if (typeof(e.which) == "number" && e.which > 0) {
+            if (!(e.ctrlKey || e.metaKey || e.altKey) && !(e.keyCode >= 37 && e.keyCode <= 40)) {
+                if (get_query().length > 0) {
+                    delay(fetch, 250);
+                } else {
+                    $("#results_tbody").empty();
+                }
             }
         }
     });
