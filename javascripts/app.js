@@ -6,7 +6,7 @@ $(document).ready(function() {
     var get_query = function() {
         var query = $("#query").val();
         if (query.length > 0) {
-            query = query.replace(/\W/g, ' ');
+            query = $.trim(query.replace(/\W/g, ' '));
         }
         if (query.length > 0) {
             return query;
