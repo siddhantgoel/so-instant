@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#query").focus();
     
-    var endpoint = "https://api.stackexchange.com/2.1/search?site=stackoverflow";
+    var endpoint = "https://api.stackexchange.com//2.1/search/advanced?site=stackoverflow"
     var timer = false;
     
     var get_query = function() {
@@ -29,9 +29,10 @@ $(document).ready(function() {
         if (get_query().length > 0) {
             $.getJSON(endpoint, {
                 order: 'desc',
-                max: 10,
-                sort: 'votes',
-                intitle: get_query()
+                sort: 'relevance',
+                accepted: 'True',
+                q: get_query(),
+                body: get_query()
             }).done(function(data) {
                 if (data.items.length > 0) {
                     $("#results_tbody").empty();
