@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#query").focus();
     
-    var endpoint = "https://api.stackexchange.com//2.1/search/advanced?site=stackoverflow"
+    var endpoint = "https://api.stackexchange.com//2.1/search/advanced?site=stackoverflow";
     
     var get_query = function() {
         var query = $("#query").val();
@@ -13,7 +13,15 @@ $(document).ready(function() {
         } else {
             return '';
         }
-    }
+    };
+    
+    var pluralize = function(what, count) {
+        if (count == 1) {
+            return what;
+        } else {
+            return what + 's';
+        }
+    };
     
     /* http://stackoverflow.com/a/1909508 */
     var delay = (function() {
@@ -32,9 +40,9 @@ $(document).ready(function() {
                     '<tr>',
                     data.items[i].is_answered ? '<td><i class="icon-ok answered"></i></td>' : '<td></td>',
                     '<td><a href="' + data.items[i].link + '">' + data.items[i].title + '</a></td>',
-                    '<td>' + String(data.items[i].score) + ' votes</td>',
-                    '<td>' + String(data.items[i].view_count) + ' views</td>',
-                    '<td>' + String(data.items[i].answer_count) + ' answers</td>',
+                    '<td>' + String(data.items[i].score) + ' ' + pluralize('vote', data.items[i].score) + ' </td>',
+                    '<td>' + String(data.items[i].view_count) + ' ' + pluralize('view', data.items[i].view_count) + ' </td>',
+                    '<td>' + String(data.items[i].answer_count) + ' ' + pluralize('answer', data.items[i].answer_count) + ' </td>',
                     '</tr>'
                 ].join(""));
             }
