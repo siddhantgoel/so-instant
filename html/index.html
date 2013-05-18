@@ -3,11 +3,28 @@
 
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/stylesheets/flat-ui.min.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/stylesheets/main.css" type="text/css" media="screen">
     <script src="/javascripts/jquery-1.9.1.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    
+    <title>StackOverflow Instant Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    {{ value }}
+    <div class="container">
+        <div class="span12">
+            <p class="text-center">
+                Stack Overflow Instant
+            </p>
+        </div>
+        <div class="span12">
+            <p class="text-center">
+                <input type="text" name="query" id="query"/>
+            </p>
+        </div>
+    </div>
 </body>
 </html>
 
