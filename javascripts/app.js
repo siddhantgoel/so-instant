@@ -2,7 +2,6 @@ $(document).ready(function() {
     $("#query").focus();
     
     var endpoint = "https://api.stackexchange.com//2.1/search/advanced?site=stackoverflow"
-    var timer = false;
     
     var get_query = function() {
         var query = $("#query").val();
