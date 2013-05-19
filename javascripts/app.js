@@ -4,6 +4,7 @@ $(document).ready(function() {
     $("#error_div").hide();
     var endpoint = "https://api.stackexchange.com/2.1/search/advanced?site=stackoverflow";
     var application_key = 'A3a8pTUXjWuDDLPQcZ8OSA((';
+    var access_token = null;
     SE.init({
         clientId: 1562,
         key: application_key,
@@ -70,14 +71,21 @@ $(document).ready(function() {
         if (data) {
             update_results(data);
         } else {
-            $.getJSON(endpoint, {
+            var params = {
                 order: 'desc',
                 sort: 'relevance',
                 accepted: 'True',
                 q: query,
-                body: query,
-                key: application_key
-            }).done(function(data) {
+                body: query
+            };
+            if (access_token) {
+                params.access_token = access_token;
+            } else {
+                params.key = application_key;
+            }
+            $.getJSON(
+                endpoint, params
+            ).done(function(data) {
                 update_results(data);
                 $.jStorage.set(query, data, { TTL: 25000 });
                 $("#error_div").hide();
@@ -106,12 +114,11 @@ $(document).ready(function() {
     $("#signin").click(function() {
         SE.authenticate({
             success: function(data) {
-                console.log("Successfully logged in");
-                console.log(data);
+                access_token = data.accessToken;
+                $("#signin_div").hide();
             },
             error: function(data) {
                 console.log("Error with logging in");
-                console.log(data);
             },
             scope: [ 'no_expiry' ],
             networkUsers: true
