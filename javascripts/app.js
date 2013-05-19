@@ -8,10 +8,7 @@ $(document).ready(function() {
         clientId: 1562,
         key: application_key,
         channelUrl: window.location.toString(),
-        complete: function(data) {
-            console.log("SE Initialized");
-            console.log(data);
-        }
+        complete: function(data) { console.log("SE Initialized"); }
     });
     
     /* Utility functions */
