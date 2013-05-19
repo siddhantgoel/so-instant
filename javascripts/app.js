@@ -76,12 +76,11 @@ $(document).ready(function() {
                 sort: 'relevance',
                 accepted: 'True',
                 q: query,
-                body: query
+                body: query,
+                key: application_key
             };
             if (access_token) {
                 params.access_token = access_token;
-            } else {
-                params.key = application_key;
             }
             $.getJSON(
                 endpoint, params
@@ -118,7 +117,7 @@ $(document).ready(function() {
                 $("#signin_div").hide();
             },
             error: function(data) {
-                console.log("Error with logging in");
+                console.log("Unable to login");
             },
             scope: [ 'no_expiry' ],
             networkUsers: true
