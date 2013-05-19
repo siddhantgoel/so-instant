@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $("#query").focus();
     
+    $("#error_div").hide();
+    
     var endpoint = "https://api.stackexchange.com/2.1/search/advanced?site=stackoverflow";
     
     var get_query = function() {
@@ -91,7 +93,5 @@ $(document).ready(function() {
             }
         }
     });
-    
-    $("#error_div").hide();
     
 });
