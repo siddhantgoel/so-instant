@@ -7,9 +7,9 @@ $(document).ready(function() {
     SE.init({
         clientId: 1562,
         key: application_key,
-        channelUrl: window.location.toString() + 'blank',
+        channelUrl: window.location.toString(),
         complete: function(data) {
-            console.log("SE API initialized on " + window.location.toString() + "blank");
+            console.log("SE Initialized");
             console.log(data);
         }
     });

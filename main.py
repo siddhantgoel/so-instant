@@ -16,12 +16,6 @@ class MainHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(values))
 
-class BlankHandler(webapp2.RequestHandler):
-    def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write('')
-
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/blank', BlankHandler)
 ], debug = True)
