@@ -9,7 +9,8 @@ $(document).ready(function() {
         key: application_key,
         channelUrl: window.location.toString() + 'blank',
         complete: function(data) {
-            console.log("SE API initialized");
+            console.log("SE API initialized on " + window.location.toString() + "blank");
+            console.log(data);
         }
     });
     
@@ -115,6 +116,7 @@ $(document).ready(function() {
                 console.log("Error with logging in");
                 console.log(data);
             },
+            scope: [ 'no_expiry' ],
             networkUsers: true
         });
     });
