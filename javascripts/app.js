@@ -48,6 +48,10 @@ $(document).ready(function() {
             timer = setTimeout(callback, ms);
         };
     })();
+    /* http://stackoverflow.com/a/2901298 */
+    var number_with_commas = function(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
     
     /* Update the table with the search query results */
     var update_results = function(data) {
@@ -58,9 +62,9 @@ $(document).ready(function() {
                     '<tr>',
                     data.items[i].is_answered ? '<td><i class="icon-ok answered"></i></td>' : '<td></td>',
                     '<td><a href="' + data.items[i].link + '">' + data.items[i].title + '</a></td>',
-                    '<td>' + String(data.items[i].score) + ' ' + pluralize('vote', data.items[i].score) + ' </td>',
-                    '<td>' + String(data.items[i].view_count) + ' ' + pluralize('view', data.items[i].view_count) + ' </td>',
-                    '<td>' + String(data.items[i].answer_count) + ' ' + pluralize('answer', data.items[i].answer_count) + ' </td>',
+                    '<td>' + number_with_commas(data.items[i].score) + ' ' + pluralize('vote', data.items[i].score) + ' </td>',
+                    '<td>' + number_with_commas(data.items[i].view_count) + ' ' + pluralize('view', data.items[i].view_count) + ' </td>',
+                    '<td>' + number_with_commas(data.items[i].answer_count) + ' ' + pluralize('answer', data.items[i].answer_count) + ' </td>',
                     '</tr>'
                 ].join(""));
             }
