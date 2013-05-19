@@ -2,6 +2,10 @@ $(document).ready(function() {
     /* Initialization code */
     $("#query").focus();
     $("#error_div").hide();
+    $("#signin").tooltip({
+        title: 'Anonymous searches are rate limited. Sign in to be able to make more.',
+        placement: 'bottom'
+    });
     var endpoint = "https://api.stackexchange.com/2.1/search/advanced?site=stackoverflow";
     var application_key = 'A3a8pTUXjWuDDLPQcZ8OSA((';
     var access_token = null;
