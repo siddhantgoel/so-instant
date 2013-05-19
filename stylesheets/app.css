@@ -1,3 +1,10 @@
 body {
     padding-top: 50px;
 }
+
+a img {
+    border: 0 none;
+}
+.image-link {
+    text-decoration: none;
+}
