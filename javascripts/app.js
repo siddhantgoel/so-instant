@@ -23,6 +23,12 @@ $(document).ready(function() {
         }
     };
     
+    var capitalize = function(string) {
+        if (string.length > 0) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+    };
+    
     /* http://stackoverflow.com/a/1909508 */
     var delay = (function() {
         var timer = 0;
@@ -65,6 +71,11 @@ $(document).ready(function() {
             }).done(function(data) {
                 update_results(data);
                 $.jStorage.set(query, data, { TTL: 25000 });
+                $("#error_div").hide();
+            }).fail(function(data) {
+                data = $.parseJSON(data.responseText);
+                $("#error_message").html(capitalize(data.error_message));
+                $("#error_div").show();
             });
         }
     };
@@ -80,5 +91,7 @@ $(document).ready(function() {
             }
         }
     });
+    
+    $("#error_div").hide();
     
 });
