@@ -12,9 +12,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        values = { 'value': 'hello stack-instant' }
-        template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render(values))
+        self.response.write(JINJA_ENVIRONMENT.get_template('index.html').render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
