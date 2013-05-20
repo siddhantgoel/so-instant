@@ -9,7 +9,7 @@ a img {
     text-decoration: none;
 }
 
-tbody {
+tbody .name {
     font-size: 16px;
 }
 tbody .tag {
