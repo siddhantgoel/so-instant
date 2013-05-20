@@ -61,10 +61,15 @@ $(document).ready(function() {
                 $("#results_table > tbody:last").append([
                     '<tr>',
                     data.items[i].is_answered ? '<td><i class="icon-ok answered"></i></td>' : '<td></td>',
-                    '<td><a href="' + data.items[i].link + '" target="_blank">' + data.items[i].title + '</a></td>',
+                    '<td><p><a href="' + data.items[i].link + '" target="_blank">' + data.items[i].title + '</a></p>',
+                    '<p>',
+                    $.map(data.items[i].tags, function(tag) {
+                        return '<a class="btn btn-mini tag" target="_blank" href="http://stackoverflow.com/questions/tagged/' + tag + '">' + tag + '</a>';
+                    }).join(" "),
+                    '</p></td>',
+                    '<td>' + number_with_commas(data.items[i].answer_count) + ' ' + pluralize('answer', data.items[i].answer_count) + ' </td>',
                     '<td>' + number_with_commas(data.items[i].score) + ' ' + pluralize('vote', data.items[i].score) + ' </td>',
                     '<td>' + number_with_commas(data.items[i].view_count) + ' ' + pluralize('view', data.items[i].view_count) + ' </td>',
-                    '<td>' + number_with_commas(data.items[i].answer_count) + ' ' + pluralize('answer', data.items[i].answer_count) + ' </td>',
                     '</tr>'
                 ].join(""));
             }

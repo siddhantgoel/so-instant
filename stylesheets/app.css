@@ -8,3 +8,10 @@ a img {
 .image-link {
     text-decoration: none;
 }
+
+tbody {
+    font-size: 16px;
+}
+tbody .tag {
+    font-size: 14px;
+}
