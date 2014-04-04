@@ -15,7 +15,7 @@ $(document).ready(function() {
         channelUrl: window.location.toString(),
         complete: function(data) { console.log("SE Initialized"); }
     });
-    
+
     /* Utility functions */
     var get_query = function() {
         var query = $("#query").val();
@@ -52,7 +52,7 @@ $(document).ready(function() {
     var number_with_commas = function(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
-    
+
     /* Update the table with the search query results */
     var update_results = function(data) {
         $("#results_tbody").empty();
@@ -77,7 +77,7 @@ $(document).ready(function() {
             $(".answered").tooltip({ title: 'Answered', placement: 'bottom' });
         }
     };
-    
+
     /* Fetch search results from the StackExchange API */
     var fetch = function() {
         var query = get_query();
@@ -109,7 +109,7 @@ $(document).ready(function() {
             });
         }
     };
-    
+
     /* Bind the event handler for the text input box */
     $("#query").on("keyup", function(e) {
         if (typeof(e.which) == "number" && e.which > 0) {
@@ -122,7 +122,7 @@ $(document).ready(function() {
             }
         }
     });
-    
+
     /* Bind the login button to log in to StackExchange */
     $("#signin").click(function() {
         SE.authenticate({
@@ -137,5 +137,5 @@ $(document).ready(function() {
             networkUsers: true
         });
     });
-    
+
 });
